@@ -15,20 +15,25 @@ class Example(QtGui.QMainWindow):
     def initUI(self):
         exitAction = QtGui.QAction(QtGui.QIcon('Images/exit.png'), 'Exit', self)
         exitAction.setShortcut('Ctrl+Q')
+        exitAction.setStatusTip('Exit application')
         exitAction.triggered.connect(QtGui.qApp.quit)
 
         openAction = QtGui.QAction(QtGui.QIcon('Images/openlogo-50.png'), 'Open', self)
         openAction.setShortcut('Ctrl+O')
+        openAction.setStatusTip('Open archive')
         self.connect(openAction, QtCore.SIGNAL('triggered()'), self.showDialog)
 
         saveAction = QtGui.QAction(QtGui.QIcon('Images/save.png'), 'Save', self)
         saveAction.setShortcut('Ctrl+S')
+        saveAction.setStatusTip('Save archive')
         self.connect(saveAction, QtCore.SIGNAL('triggered()'), self.saveDocument)
 
         self.toolbar = self.addToolBar('werever')
         self.toolbar.addAction(exitAction)
         self.toolbar.addAction(openAction)
         self.toolbar.addAction(saveAction)
+
+        self.statusBar()
 
         self.entrada_texto = QtGui.QTextEdit(self)
         self.entrada_texto.move(30, 100)
