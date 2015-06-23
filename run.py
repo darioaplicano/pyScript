@@ -5,19 +5,19 @@ import sys
 from PyQt4 import QtGui, QtCore
 
 
-class Example(QtGui.QWidget):
+class Example(QtGui.QMainWindow):
 
     def __init__(self):
         super(Example, self).__init__()
         self.initUI()
 
     def initUI(self):
-        menuBar = QtGui.QMenuBar
+        exitAction = QtGui.QAction(QtGui.QIcon('Images/exit.png'), 'Exit', self)
+        exitAction.setShortcut('Ctrl+Q')
+        exitAction.triggered.connect(QtGui.qApp.quit)
 
-        boton1 = QtGui.QPushButton('Salir', self)
-        boton2 = QtGui.QPushButton('Inicio', self)
-        boton1.move(710, 0)
-        boton1.clicked.connect(QtCore.QCoreApplication.instance().quit)
+        self.toolbar = self.addToolBar('Exit')
+        self.toolbar.addAction(exitAction)
 
         self.entrada_texto = QtGui.QTextEdit(self)
         self.entrada_texto.move(30, 100)
